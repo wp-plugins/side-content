@@ -5,7 +5,7 @@ Plugin URI: http://likemind.co.uk/wordpress-side-content-plugin
 Description: Creates sidebar widgets specific to a page.
 Author: Alfred Armstrong, Likemind Web Services
 
-Version: 0.2
+Version: 0.3
 Author URI: http://likemind.co.uk
 */
 
@@ -40,7 +40,8 @@ class side_content {
    * @return array
    */
   public function the_page($posts) {
-    if(count($posts) == 1 && $posts[0]->post_type == 'page') {
+    $do_posts = get_option('side_content_for_posts');
+    if(count($posts) == 1 && ($posts[0]->post_type == 'page' ||($do_posts && is_single()))) {
       $post = $posts[0];
       foreach ($this->widget_names() as $name) {
         $data = get_post_custom_values($name, $post->ID);
@@ -89,8 +90,12 @@ class side_content {
 <label ><p>Names for widgets (one per line)</p>
 <textarea rows="4" cols="60" name="side_content_widgets"><?php echo get_option('side_content_widgets'); ?></textarea>
 </label>
+<label>
+<p>Side content on posts as well as pages? <input type="checkbox" name="side_content_for_posts" value="1" <?php echo get_option('side_content_for_posts')? 'checked="checked"':''; ?>>
+</p>
+</label>
 <input type="hidden" name="action" value="update" />
-<input type="hidden" name="page_options" value="side_content_widgets" />
+<input type="hidden" name="page_options" value="side_content_widgets,side_content_for_posts" />
 
 <p class="submit">
 <input type="submit" name="Submit" value="<?php _e('Save Changes') ?>" />
