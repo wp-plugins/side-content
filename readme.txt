@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Side Content ===
 Contributors: alfaguru
 Donate link: http://likemind.co.uk/
 Tags: widget, sidebar, page
@@ -14,7 +14,7 @@ This plugin provides similar functionality to the [Drupal Side Content module](h
 
 It enables you to define a set of widgets which are effectively placeholders. Each one is empty until you assign content
 to it when editing a page.
-This enables you to effectively extend the content of the page into the sidebar.
+This enables you to extend the content of the page into the sidebar.
 
 Suppose, for example, you have a set of pages about people in your company. You could use a side content
 widget to add a biography for each of them, or a photo, or to list their favourite pizza toppings.
@@ -29,7 +29,7 @@ the top-level folder. Don't just upload all the php files and put them in `/wp-c
 1. Go to the settings page (*Options - Side Content*) and create widgets by typing names for them into the box (one per line).
 1. You can optionally have side content on individual blog posts as well. Tick the checkbox if you want that option.
 1. Assign your widgets to positions in your sidebars (*Design - Widgets*). Note that until you give them content they won't appear anywhere.
-1. Edit a page for which you want one or more sidebar content widgets. Create a custom field for each widget. The name of the field must be exactly the same as the name of the widget, The content of the field should be the HTML (including any heading) you wish to appear.
+1. Edit a page (or post) for which you want one or more sidebar content widgets. The widget entry areas will be found in a sub panel headed "Side Content Widgets". In each area enter the HTML (including any heading) you wish to appear. The widget content will be saved along with the rest of the page or post.
 
 == Frequently Asked Questions ==
 
