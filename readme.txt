@@ -37,6 +37,10 @@ the top-level folder. Don't just upload all the php files and put them in `/wp-c
 
 Yes. There's an option on the settings page (*Options - Side Content*) for this.
 
+= My widget content also appears in the custom fields subpanel on the editor page. Why?
+
+The plugin uses custom fields to store the widget code, but has its own subpanel for editing to improve ease of use. You can use either to edit your widgets but it is best to stick to one or the other.
+
 == Screenshots ==
 
 There are no screenshots for this plugin.
