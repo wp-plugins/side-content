@@ -5,7 +5,7 @@ Plugin URI: http://likemind.co.uk/wordpress-side-content-plugin
 Description: Creates sidebar widgets specific to a page.
 Author: Alfred Armstrong, Likemind Web Services
 
-Version: 0.5
+Version: 0.6
 Author URI: http://likemind.co.uk
 */
 
@@ -20,6 +20,7 @@ class side_content {
   public function __construct() {
     // register hooks
     add_filter('the_posts', array($this, 'the_page'));
+    add_filter('whitelist_options',array($this,'alter_whitelist_options'));
     add_action('admin_menu', array($this, 'register_admin_menu'));
     add_action('plugins_loaded', array($this, 'register_widgets'));
     if($this->do_posts()) {
@@ -30,6 +31,14 @@ class side_content {
     add_action('publish_post', array($this, 'save_widgets_value'));
     add_action('save_post', array($this, 'save_widgets_value'));
     add_action('edit_page_form', array($this, 'save_widgets_value'));
+  }
+
+  function alter_whitelist_options($whitelist) {
+    if(is_array($whitelist)) {
+      $option_array = array('side_content' => array('side_content_widgets','side_content_for_posts'));
+      $whitelist = array_merge($whitelist,$option_array);
+    }
+    return $whitelist;
   }
 
   public function has_widgets($name=false) {
@@ -150,7 +159,12 @@ class side_content {
 <h2>Side Content Widgets</h2>
 
 <form method="post" action="options.php">
-<?php wp_nonce_field('update-options'); ?>
+<?php
+if(function_exists('wpmu_create_blog'))
+wp_nonce_field('side_content-options');
+else
+wp_nonce_field('update-options');
+?>
 <label ><p>Names for widgets (one per line)</p>
 <textarea rows="4" cols="60" name="side_content_widgets"><?php echo get_option('side_content_widgets'); ?></textarea>
 </label>
@@ -160,7 +174,7 @@ class side_content {
 </label>
 <input type="hidden" name="action" value="update" />
 <input type="hidden" name="page_options" value="side_content_widgets,side_content_for_posts" />
-
+<input type="hidden" name="option_page" value="side_content" />
 <p class="submit">
 <input type="submit" name="Submit" value="<?php _e('Save Changes') ?>" />
 </p>

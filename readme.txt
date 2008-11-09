@@ -33,6 +33,14 @@ the top-level folder. Don't just upload all the php files and put them in `/wp-c
 
 == Frequently Asked Questions ==
 
+= Why do I get an error when I enable the plugin? =
+
+If you see an error message like "Parse error: parse error, unexpected T_STRING, expecting T_OLD_FUNCTION or T_FUNCTION or T_VAR ..." it is because you are running under PHP4. The plugin requires PHP5.
+
+= Is this plugin WordPress-MU compatible? =
+
+As of release 0.6, yes, it should work under WP-MU, although it has only been tested with the 2.6.3 release, and not very extensively.
+
 = Does the plugin allow side content for blog posts? =
 
 Yes. There's an option on the settings page (*Options - Side Content*) for this.
