@@ -35,7 +35,7 @@ the top-level folder. Don't just upload all the php files and put them in `/wp-c
 
 = Why do I get an error when I enable the plugin? =
 
-If you see an error message like "Parse error: parse error, unexpected T_STRING, expecting T_OLD_FUNCTION or T_FUNCTION or T_VAR ..." it is because you are running under PHP4. The plugin requires PHP5.
+If you see an error message like "Parse error: parse error, unexpected T\_STRING, expecting T\_OLD_FUNCTION or T\_FUNCTION or T\_VAR ..." it is because you are running under PHP4. The plugin requires PHP5.
 
 = Is this plugin WordPress-MU compatible? =
 
