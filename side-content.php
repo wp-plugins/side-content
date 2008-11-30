@@ -5,7 +5,7 @@ Plugin URI: http://likemind.co.uk/wordpress-side-content-plugin
 Description: Creates sidebar widgets specific to a page.
 Author: Alfred Armstrong, Likemind Web Services
 
-Version: 0.6
+Version: 0.7
 Author URI: http://likemind.co.uk
 */
 
@@ -20,6 +20,9 @@ class side_content {
   public function __construct() {
     // register hooks
     add_filter('the_posts', array($this, 'the_page'));
+    if($this->do_shortcodes()) {
+      add_filter('side_content', 'do_shortcode');
+    }
     add_filter('whitelist_options',array($this,'alter_whitelist_options'));
     add_action('admin_menu', array($this, 'register_admin_menu'));
     add_action('plugins_loaded', array($this, 'register_widgets'));
@@ -35,7 +38,7 @@ class side_content {
 
   function alter_whitelist_options($whitelist) {
     if(is_array($whitelist)) {
-      $option_array = array('side_content' => array('side_content_widgets','side_content_for_posts'));
+      $option_array = array('side_content' => array('side_content_widgets','side_content_for_posts','side_content_with_shortcodes'));
       $whitelist = array_merge($whitelist,$option_array);
     }
     return $whitelist;
@@ -53,6 +56,10 @@ class side_content {
     return get_option('side_content_for_posts');
   }
 
+  function do_shortcodes() {
+    return get_option('side_content_with_shortcodes');
+  }
+
   /**
    * If this is a page, process accordingly
    *
@@ -66,6 +73,7 @@ class side_content {
       foreach ($this->widget_names() as $name) {
         $data = stripcslashes(get_post_meta($post->ID, $name, true));
         if($data) {
+          $data = apply_filters('side_content', $data);
           $this->widgets[$name] = $data;
         }
       }
@@ -172,8 +180,13 @@ wp_nonce_field('update-options');
 <p>Side content on posts as well as pages? <input type="checkbox" name="side_content_for_posts" value="1" <?php echo get_option('side_content_for_posts')? 'checked="checked"':''; ?>>
 </p>
 </label>
+<label>
+<p>Handle shortcodes in widgets? <input type="checkbox" name="side_content_with_shortcodes" value="1" <?php echo get_option('side_content_with_shortcodes')? 'checked="checked"':''; ?>>
+</p>
+</label>
+
 <input type="hidden" name="action" value="update" />
-<input type="hidden" name="page_options" value="side_content_widgets,side_content_for_posts" />
+<input type="hidden" name="page_options" value="side_content_widgets,side_content_for_posts,side_content_with_shortcodes" />
 <input type="hidden" name="option_page" value="side_content" />
 <p class="submit">
 <input type="submit" name="Submit" value="<?php _e('Save Changes') ?>" />

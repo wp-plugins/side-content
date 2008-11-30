@@ -21,6 +21,8 @@ widget to add a biography for each of them, or a photo, or to list their favouri
 
 You can use the plugin without any template changes at all, but it does provide a simple API so you can test for the presence of side content widgets and adjust your templates accordingly.
 
+As of release 0.7 of the plugin, it supports the [WP shortcode API](http://codex.wordpress.org/Shortcode_API). There is also an extra add-on plugin which provides the same support for [NextGEN Gallery](http://alexrabe.boelinger.com/wordpress-plugins/nextgen-gallery/) shortcodes (development sponsored by [Comunicrea s. n. c.](http://www.comunicrea.com/)).
+
 == Installation ==
 
 1. Unzip into your `/wp-content/plugins/` directory. If you're uploading it make sure to upload
@@ -28,6 +30,8 @@ the top-level folder. Don't just upload all the php files and put them in `/wp-c
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Go to the settings page (*Options - Side Content*) and create widgets by typing names for them into the box (one per line).
 1. You can optionally have side content on individual blog posts as well. Tick the checkbox if you want that option.
+1. If you want to use shortcodes in your widget, tick the checkbox if you want that option. (Not needed for NextGEN Gallery shortcodes: see the next step).
+1. If you want to use NextGen Gallery shortcodes in your widget, go to the Plugins panel and enable Side Content NextGEN Integration.
 1. Assign your widgets to positions in your sidebars (*Design - Widgets*). Note that until you give them content they won't appear anywhere.
 1. Edit a page (or post) for which you want one or more sidebar content widgets. The widget entry areas will be found in a sub panel headed "Side Content Widgets". In each area enter the HTML (including any heading) you wish to appear. The widget content will be saved along with the rest of the page or post.
 
@@ -49,6 +53,10 @@ Yes. There's an option on the settings page (*Options - Side Content*) for this.
 
 The plugin uses custom fields to store the widget code, but has its own subpanel for editing to improve ease of use. You can use either to edit your widgets but it is best to stick to one or the other.
 
+= Why does the widget does not recognise shortcodes for some plugins? =
+
+Not all plugins use the new WP Shortcode API yet. If you need particular shortcodes to be recognised it may be possible to have an addon developed for that purpose. Contact the author for more details.
+
 == Screenshots ==
 
 There are no screenshots for this plugin.
@@ -62,3 +70,5 @@ Use the following code to test for the presence of side content widgets:
 Use the following code to test for the presence of a particular side content widget called 'widget name':
 
 `<?php if(function_exists('the_side_content') && the_side_content()->has_widgets('widget name') :?>`
+
+The plugin defines a filter, 'side_content', which can be used to preprocess side content widgets before display.
