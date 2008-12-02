@@ -23,7 +23,7 @@ You can use the plugin without any template changes at all, but it does provide 
 
 As of release 0.7 of the plugin, it supports the [WP shortcode API](http://codex.wordpress.org/Shortcode_API). There is also an extra add-on plugin which provides the same support for [NextGEN Gallery](http://alexrabe.boelinger.com/wordpress-plugins/nextgen-gallery/) shortcodes (development sponsored by [Comunicrea s. n. c.](http://www.comunicrea.com/)).
 
-Release 0.75 fixes a bug affecting side content widgets with names containing characters other than lowercase alphanumerics.
+Release 0.75 fixes a bug affecting side content widgets with names containing characters other than lowercase alphanumerics. A new contributed extension provides integration with the qTranslate plugin.
 
 == Installation ==
 
