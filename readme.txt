@@ -23,6 +23,8 @@ You can use the plugin without any template changes at all, but it does provide 
 
 As of release 0.7 of the plugin, it supports the [WP shortcode API](http://codex.wordpress.org/Shortcode_API). There is also an extra add-on plugin which provides the same support for [NextGEN Gallery](http://alexrabe.boelinger.com/wordpress-plugins/nextgen-gallery/) shortcodes (development sponsored by [Comunicrea s. n. c.](http://www.comunicrea.com/)).
 
+Release 0.75 fixes a bug affecting side content widgets with names containing characters other than lowercase alphanumerics.
+
 == Installation ==
 
 1. Unzip into your `/wp-content/plugins/` directory. If you're uploading it make sure to upload
