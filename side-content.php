@@ -5,7 +5,7 @@ Plugin URI: http://likemind.co.uk/wordpress-side-content-plugin
 Description: Creates sidebar widgets specific to a page.
 Author: Alfred Armstrong, Likemind Web Services
 
-Version: 0.75
+Version: 0.8
 Author URI: http://likemind.co.uk
 */
 
@@ -23,7 +23,12 @@ class side_content {
     if($this->do_shortcodes()) {
       add_filter('side_content', 'do_shortcode');
     }
-    add_filter('whitelist_options',array($this,'alter_whitelist_options'));
+    global $wp_version;
+    if(version_compare($wp_version, '2.7', '<')) {
+      add_filter('whitelist_options',array($this,'alter_whitelist_options'));
+    } else {
+      add_action('admin_init', array($this, 'register_settings'));
+    }
     add_action('admin_menu', array($this, 'register_admin_menu'));
     add_action('plugins_loaded', array($this, 'register_widgets'));
     if($this->do_posts()) {
@@ -34,6 +39,15 @@ class side_content {
     add_action('publish_post', array($this, 'save_widgets_value'));
     add_action('save_post', array($this, 'save_widgets_value'));
     add_action('edit_page_form', array($this, 'save_widgets_value'));
+  }
+
+  /*
+  * WP 2.7+ settings registration
+  */
+  function register_settings() {
+    register_setting('side_content-options', 'side_content_widgets');
+    register_setting('side_content-options', 'side_content_for_posts', 'intval');
+    register_setting('side_content-options', 'side_content_with_shortcodes', 'intval');
   }
 
   function alter_whitelist_options($whitelist) {
@@ -168,10 +182,22 @@ class side_content {
 
 <form method="post" action="options.php">
 <?php
-if(function_exists('wpmu_create_blog'))
-wp_nonce_field('side_content-options');
-else
-wp_nonce_field('update-options');
+global $wp_version;
+if(version_compare($wp_version, '2.7', '<')) {
+
+  if(function_exists('wpmu_create_blog'))
+  wp_nonce_field('side_content-options');
+  else
+  wp_nonce_field('update-options');
+  ?>
+  <input type="hidden" name="option_page" value="side_content" />
+  <input type="hidden" name="action" value="update" />
+  <input type="hidden" name="page_options" value="side_content_widgets,side_content_for_posts,side_content_with_shortcodes" />
+<?php
+}
+ else {
+  settings_fields('side_content-options');
+}
 ?>
 <label ><p>Names for widgets (one per line)</p>
 <textarea rows="4" cols="60" name="side_content_widgets"><?php echo get_option('side_content_widgets'); ?></textarea>
@@ -185,9 +211,6 @@ wp_nonce_field('update-options');
 </p>
 </label>
 
-<input type="hidden" name="action" value="update" />
-<input type="hidden" name="page_options" value="side_content_widgets,side_content_for_posts,side_content_with_shortcodes" />
-<input type="hidden" name="option_page" value="side_content" />
 <p class="submit">
 <input type="submit" name="Submit" value="<?php _e('Save Changes') ?>" />
 </p>
