@@ -61,6 +61,10 @@ The plugin uses custom fields to store the widget code, but has its own subpanel
 
 Not all plugins use the new WP Shortcode API yet. If you need particular shortcodes to be recognised it may be possible to have an addon developed for that purpose. Contact the author for more details.
 
+= Will you add the facility to execute PHP code? =
+
+There are no plans to add PHP execution support to the plugin. In my opinion this would not be a good way to use it. Most of those who have requested the feature are actually looking for what is offered by the [Widget Logic](http://wordpress.org/extend/plugins/widget-logic/) plugin, the ability to hide or display content conditionally.
+
 == Screenshots ==
 
 There are no screenshots for this plugin.
