@@ -5,7 +5,7 @@ Plugin URI: http://likemind.co.uk/wordpress-side-content-plugin
 Description: Creates sidebar widgets specific to a page.
 Author: Alfred Armstrong, Likemind Web Services
 
-Version: 0.8
+Version: 0.9
 Author URI: http://likemind.co.uk
 */
 
@@ -108,7 +108,9 @@ class side_content {
     $names = $this->widget_names();
     foreach ($names as $name) {
       $clean_name = sanitize_title_with_dashes($name);
-      wp_register_sidebar_widget($name, $name, array($this, 'widget'), array('description'=>__('Side content widget').': '.$name, 'classname'=>$clean_name));
+      // because wp_list_widgets forces the callback to be unique
+      $func = create_function('$args', '{the_side_content()->widget($args);}');
+      wp_register_sidebar_widget($name, $name, $func, array('description'=>__('Side content widget').': '.$name, 'classname'=>$clean_name));
     }
   }
 

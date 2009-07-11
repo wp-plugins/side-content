@@ -3,7 +3,7 @@ Contributors: alfaguru
 Donate link: http://likemind.co.uk/
 Tags: widget, sidebar, page
 Requires at least: 2.5
-Tested up to: 2.7
+Tested up to: 2.8.1
 Stable tag: trunk
 
 Side Content enables you to create widgets which have different content on different pages.
@@ -26,6 +26,7 @@ As of release 0.7 of the plugin, it supports the [WP shortcode API](http://codex
 Release 0.75 fixes a bug affecting side content widgets with names containing characters other than lowercase alphanumerics. A new contributed extension provides integration with the qTranslate plugin.
 
 Release 0.8 adds no new functionality but makes the plugin compatible with WP 2.7.
+Release 0.9 adds no new functionality but makes the plugin compatible with WP 2.8.1.
 
 == Installation ==
 
