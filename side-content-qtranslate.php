@@ -5,7 +5,7 @@ Plugin URI: http://likemind.co.uk/wordpress-side-content-plugin
 Description: Extends the Side Content plugin to perform translation using qTranslate
 Author: Matteo Plebani, Comunicrea snc
 
-Version: 0.8
+Version: 0.9
 Author URI: http://comunicrea.com
 */
 if(!is_admin() && function_exists('qtrans_useCurrentLanguageIfNotFoundShowAvailable')) {
