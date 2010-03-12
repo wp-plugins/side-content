@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: Side Content
-Plugin URI: http://likemind.co.uk/wordpress-side-content-plugin
+Plugin URI: http://figure-w.co.uk/wordpress-side-content-plugin
 Description: Creates sidebar widgets specific to a page.
-Author: Alfred Armstrong, Likemind Web Services
+Author: Alfred Armstrong, Figure W
 
-Version: 0.9
-Author URI: http://likemind.co.uk
+Version: 0.91
+Author URI: http://figure-w.co.uk
 */
 
 /**

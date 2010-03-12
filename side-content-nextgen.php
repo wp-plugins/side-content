@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: Side Content NextGEN Integration
-Plugin URI: http://likemind.co.uk/wordpress-side-content-plugin
+Plugin URI: http://figure-w.co.uk/wordpress-side-content-plugin
 Description: Extends the Side Content plugin to recognise nextgen shortcodes
-Author: Alfred Armstrong, Likemind Web Services
+Author: Alfred Armstrong, Figure W
 
-Version: 0.9
-Author URI: http://likemind.co.uk
+Version: 0.91
+Author URI: http://figure-w.co.uk
 */
 if(!is_admin() && function_exists('searchnggallerytags')) {
   add_filter('side_content', 'searchnggallerytags');
