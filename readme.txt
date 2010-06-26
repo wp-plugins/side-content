@@ -3,7 +3,7 @@ Contributors: alfaguru
 Donate link: http://figure-w.co.uk/
 Tags: widget, sidebar, page
 Requires at least: 2.5
-Tested up to: 2.9.2
+Tested up to: 3.0.0
 Stable tag: trunk
 
 Side Content enables you to create widgets which have different content on different pages.
