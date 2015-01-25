@@ -5,7 +5,7 @@ Plugin URI: http://figure-w.co.uk/wordpress-side-content-plugin
 Description: Creates sidebar widgets specific to a page.
 Author: Alfred Armstrong, Figure W
 
-Version: 0.91
+Version: 1.0
 Author URI: http://figure-w.co.uk
 */
 
