@@ -3,7 +3,7 @@ Contributors: alfaguru
 Donate link: http://figure-w.co.uk/
 Tags: widget, sidebar, page
 Requires at least: 2.5
-Tested up to: 3.0.0
+Tested up to: 4.1.0
 Stable tag: trunk
 
 Side Content enables you to create widgets which have different content on different pages.
@@ -27,6 +27,7 @@ Release 0.75 fixes a bug affecting side content widgets with names containing ch
 
 Release 0.8 adds no new functionality but makes the plugin compatible with WP 2.7.
 Release 0.9 adds no new functionality but makes the plugin compatible with WP 2.8.1.
+Release 1.0 adds no new functionality but makes the plugin compatible with WP 4.1.0.
 
 == Installation ==
 

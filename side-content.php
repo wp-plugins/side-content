@@ -31,10 +31,8 @@ class side_content {
     }
     add_action('admin_menu', array($this, 'register_admin_menu'));
     add_action('plugins_loaded', array($this, 'register_widgets'));
-    if($this->do_posts()) {
-      add_action('edit_form_advanced', array($this, 'show_editor'));
-    }
-    add_action('edit_page_form', array($this, 'show_editor'));
+    add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
+
     add_action('edit_post', array($this, 'save_widgets_value'));
     add_action('publish_post', array($this, 'save_widgets_value'));
     add_action('save_post', array($this, 'save_widgets_value'));
@@ -56,6 +54,13 @@ class side_content {
       $whitelist = array_merge($whitelist,$option_array);
     }
     return $whitelist;
+  }
+
+  function add_meta_boxes() {
+    add_meta_box('side-content', __ ('Side Content', 'side-content'),  array($this, 'show_editor'), 'page', 'normal', 'high');
+    if($this->do_posts()) {
+        add_meta_box('side-content', __ ('Side Content', 'side-content'),  array($this, 'show_editor'), 'post', 'normal', 'high');
+    }
   }
 
   public function has_widgets($name=false) {
@@ -131,9 +136,7 @@ class side_content {
       $id = false;
     }
     ?>
-    <div id="side_content_editor_wrapper" class="postbox closed">
-    <h3>Side Content Widgets</h3>
-    <div class="inside">
+
     <div id="side_content_editor">
     <table>
     <?php
@@ -155,8 +158,7 @@ class side_content {
     ?>
     </table>
     </div>
-    </div>
-    </div>
+
 <?php
   }
 
